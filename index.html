@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Media Community (LMC) - Preview</title>
+  <style>
+    :root {
+      --navy: #0A192F;
+      --teal: #00A896;
+      --gold: #F2A900;
+      --light-bg: #F8F9FA;
+      --text: #2B2D42;
+      --card-bg: #FFFFFF;
+      --border: #E2E8F0;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background-color: var(--light-bg);
+      line-height: 1.6;
+    }
+
+    /* Top Navigation Bar */
+    header {
+      background-color: var(--navy);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: var(--navy);
+      border: 2px solid var(--gold);
+      font-size: 0.85rem;
+    }
+
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: #E2E8F0;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    .nav-btn {
+      background-color: var(--teal);
+      color: white !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .nav-btn:hover {
+      background-color: #00897b;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #1E3A8A 100%);
+      color: white;
+      text-align: center;
+      padding: 5rem 1.5rem 4rem;
+    }
+
+    .hero h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 680px;
+      margin: 0 auto 2rem;
+      color: #CBD5E1;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background-color: var(--gold);
+      color: var(--navy);
+      padding: 0.85rem 1.75rem;
+      border-radius: 6px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border: 2px solid var(--teal);
+      color: white;
+      padding: 0.85rem 1.75rem;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(0, 168, 150, 0.15);
+    }
+
+    /* Main Content Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title p {
+      color: #64748B;
+    }
+
+    /* Feature Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      border-top: 5px solid var(--teal);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .card p {
+      color: #475569;
+      font-size: 0.95rem;
+    }
+
+    /* Announcement Banner */
+    .announcement {
+      background-color: #EFF6FF;
+      border-left: 4px solid #3B82F6;
+      padding: 1.5rem;
+      border-radius: 6px;
+      margin-top: 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .announcement-text h4 {
+      color: #1E40AF;
+      margin-bottom: 0.25rem;
+    }
+
+    .announcement-text p {
+      color: #3B82F6;
+      font-size: 0.9rem;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--navy);
+      color: #94A3B8;
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      font-size: 0.9rem;
+      border-top: 1px solid #1E293B;
+    }
+
+    footer strong {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <div class="brand-logo">LMC</div>
+      <span class="brand-title">Library Media Community</span>
+    </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#resources">Resources</a>
+      <a href="#research">Research</a>
+      <a href="#events">Events</a>
+      <a href="#join" class="nav-btn">Join Community</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Connecting Educators, Librarians & Researchers</h1>
+    <p>Bridging local gaps in media literacy, game-based learning, and edtech by sharing resources, evidence-based practices, and collaborative research across the Gulf Coast region.</p>
+    <div class="hero-actions">
+      <a href="#join" class="btn-primary">Become a Member</a>
+      <a href="#resources" class="btn-secondary">Browse Resources</a>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="section-title">
+      <h2>Community Initiatives</h2>
+      <p>Empowering local school media specialists and K-12 educators through collaborative growth.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">📚</div>
+        <h3>Resource Sharing</h3>
+        <p>Access curated media lesson plans, digital citizenship frameworks, AI evaluation guides, and open curriculum materials created by local specialists.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🔬</div>
+        <h3>Collaborative Research</h3>
+        <p>Participate in action research initiatives, grants, and evidence-based projects evaluating youth information literacy and emerging media technologies.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🤝</div>
+        <h3>Local Network & Meetups</h3>
+        <p>Connect directly with peer media specialists, school librarians, and academic faculty through regular virtual roundtables and local workshops.</p>
+      </div>
+    </div>
+
+    <div class="announcement">
+      <div class="announcement-text">
+        <h4>Upcoming Network Session</h4>
+        <p>Join us for our inaugural virtual meetup on integrating AI literacy tools into media centers.</p>
+      </div>
+      <a href="#register" class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">RSVP Now</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 <strong>Library Media Community (LMC)</strong>. Spearheaded in partnership with the University of South Alabama.</p>
+  </footer>
+
+</body>
+</html>
