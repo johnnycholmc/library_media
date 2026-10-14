@@ -3,79 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Library Media Community (LMC) | University of South Alabama</title>
+  <title>Library Media Specialist Community | University of South Alabama</title>
   <style>
     :root {
       --usa-navy: #00205B;
       --usa-red: #CC0000;
       --usa-gold: #FFC72C;
-      --light-bg: #F4F6F9;
+      --light-bg: #F8FAFC;
       --card-bg: #FFFFFF;
-      --text: #212529;
-      --border: #D1D5DB;
+      --text: #1E293B;
+      --border: #E2E8F0;
     }
     
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text); background-color: var(--light-bg); line-height: 1.6; }
 
-    /* Header & Navigation */
-    header { background-color: var(--usa-navy); color: white; padding: 0.75rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--usa-red); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
-    .brand { display: flex; align-items: center; gap: 12px; }
-    .brand-logo { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid var(--usa-gold); background: white; }
-    .brand-title { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.3px; line-height: 1.2; }
-    .brand-subtitle { font-size: 0.75rem; color: #93C5FD; font-weight: 400; }
+    /* Rich Header & Navigation */
+    header { background-color: var(--usa-navy); color: white; padding: 1rem 2.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--usa-red); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .brand { display: flex; align-items: center; gap: 16px; }
+    .brand-logo { width: 54px; height: 54px; border-radius: 50%; object-fit: cover; border: 2px solid var(--usa-gold); background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+    .brand-title { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.5px; line-height: 1.1; }
+    .brand-subtitle { font-size: 0.8rem; color: #93C5FD; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
     
-    nav { display: flex; gap: 1.25rem; align-items: center; }
-    nav a { color: #E5E7EB; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s ease; }
+    nav { display: flex; gap: 1.5rem; align-items: center; }
+    nav a { color: #E2E8F0; text-decoration: none; font-size: 0.95rem; font-weight: 600; transition: color 0.2s ease; }
     nav a:hover { color: var(--usa-gold); }
-    .nav-btn { background-color: var(--usa-red); color: white !important; padding: 0.5rem 1rem; border-radius: 4px; font-weight: 600; }
+    .nav-btn { background-color: var(--usa-red); color: white !important; padding: 0.6rem 1.25rem; border-radius: 6px; font-weight: 700; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
     .nav-btn:hover { background-color: #A30000; }
 
     /* Hero Section */
-    .hero { background: linear-gradient(135deg, var(--usa-navy) 0%, #001233 100%); color: white; text-align: center; padding: 4.5rem 1.5rem 3.5rem; border-bottom: 6px solid var(--usa-gold); }
-    .hero-mascot { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 4px solid var(--usa-gold); margin-bottom: 1.5rem; box-shadow: 0 4px 14px rgba(0,0,0,0.3); background: white; }
-    .hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2; }
-    .hero p { font-size: 1.15rem; max-width: 750px; margin: 0 auto 2rem; color: #D1D5DB; }
+    .hero { background: linear-gradient(135deg, var(--usa-navy) 0%, #001233 100%); color: white; text-align: center; padding: 5.5rem 1.5rem 4.5rem; border-bottom: 6px solid var(--usa-gold); position: relative; overflow: hidden; }
+    .hero-badge { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid var(--usa-gold); margin-bottom: 1.75rem; box-shadow: 0 8px 24px rgba(0,0,0,0.4); background: white; }
+    .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1.2rem; line-height: 1.2; letter-spacing: -0.5px; }
+    .hero p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 2.5rem; color: #CBD5E1; }
     .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     
-    .btn-primary { background-color: var(--usa-red); color: white; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
-    .btn-primary:hover { background-color: #A30000; }
-    .btn-secondary { border: 2px solid var(--usa-gold); color: white; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: 600; text-decoration: none; }
+    .btn-primary { background-color: var(--usa-red); color: white; padding: 0.85rem 2rem; border-radius: 6px; font-weight: 700; text-decoration: none; transition: transform 0.15s ease, background 0.2s; box-shadow: 0 4px 10px rgba(204,0,0,0.3); }
+    .btn-primary:hover { background-color: #A30000; transform: translateY(-2px); }
+    .btn-secondary { border: 2px solid var(--usa-gold); color: white; padding: 0.85rem 2rem; border-radius: 6px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
     .btn-secondary:hover { background-color: rgba(255, 199, 44, 0.15); }
 
-    /* Container & Sections */
-    .container { max-width: 1100px; margin: 0 auto; padding: 3.5rem 1.5rem; }
-    .section-title { text-align: center; margin-bottom: 2.5rem; }
-    .section-title h2 { font-size: 2rem; color: var(--usa-navy); margin-bottom: 0.5rem; }
-    .section-title p { color: #4B5563; }
+    /* Container & Section Layouts */
+    .container { max-width: 1200px; margin: 0 auto; padding: 4.5rem 1.5rem; }
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .section-header h2 { font-size: 2.25rem; color: var(--usa-navy); margin-bottom: 0.75rem; font-weight: 800; }
+    .section-header p { color: #64748B; font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
 
-    /* Grid Layouts */
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 2rem; box-shadow: 0 2px 6px rgba(0,0,0,0.04); border-top: 5px solid var(--usa-navy); }
-    .card h3 { font-size: 1.25rem; color: var(--usa-navy); margin-bottom: 0.75rem; }
-    .card p { color: #4B5563; font-size: 0.95rem; margin-bottom: 1rem; }
+    /* Rich Feature Grids */
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.5rem; }
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 2.5rem 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.04); border-top: 6px solid var(--usa-navy); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .card-icon { font-size: 2.2rem; margin-bottom: 1.25rem; display: inline-block; }
+    .card h3 { font-size: 1.4rem; color: var(--usa-navy); margin-bottom: 0.85rem; font-weight: 700; }
+    .card p { color: #475569; font-size: 1rem; line-height: 1.6; }
 
-    /* Embedded Knowledge Site Container */
-    .embed-container { background: white; border-radius: 8px; border: 1px solid var(--border); padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-top: 2rem; }
-    .embed-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem; }
-    .embed-header h3 { color: var(--usa-navy); font-size: 1.2rem; }
-    .embed-wrapper { width: 100%; height: 650px; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: #FFF; }
-    .embed-wrapper iframe { width: 100%; height: 100%; border: none; }
+    /* Embedded Knowledge Hub */
+    .embed-section { background: white; border-radius: 14px; border: 1px solid var(--border); padding: 2rem; box-shadow: 0 6px 20px rgba(0,0,0,0.05); margin-top: 4rem; }
+    .embed-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+    .embed-header h3 { color: var(--usa-navy); font-size: 1.5rem; font-weight: 700; }
+    .embed-frame-wrapper { width: 100%; height: 700px; border: 2px solid var(--border); border-radius: 8px; overflow: hidden; background: #FFF; }
+    .embed-frame-wrapper iframe { width: 100%; height: 100%; border: none; }
 
-    /* FAQ Section */
-    .faq-container { background: white; border-radius: 8px; border: 1px solid var(--border); padding: 2rem; margin-top: 2rem; }
-    .faq-item { border-bottom: 1px solid #E5E7EB; padding: 1.25rem 0; }
-    .faq-item:last-child { border-bottom: none; }
-    .faq-q { font-weight: 700; color: var(--usa-navy); font-size: 1.05rem; margin-bottom: 0.5rem; }
-    .faq-a { color: #4B5563; font-size: 0.95rem; }
+    /* FAQ Accordion Styling */
+    .faq-wrapper { background: white; border-radius: 12px; border: 1px solid var(--border); padding: 2.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.03); margin-top: 3rem; }
+    .faq-question-item { border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
+    .faq-question-item:last-child { border-bottom: none; }
+    .faq-q-title { font-weight: 700; color: var(--usa-navy); font-size: 1.15rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; }
+    .faq-q-title::before { content: "Q:"; color: var(--usa-red); font-weight: 900; }
+    .faq-a-text { color: #475569; font-size: 1rem; padding-left: 1.5rem; }
 
     /* Faculty Section */
-    .faculty-box { background: white; border-radius: 8px; border: 1px solid var(--border); padding: 2.5rem; display: flex; gap: 2rem; align-items: center; margin-top: 3rem; flex-wrap: wrap; }
-    .faculty-info h3 { color: var(--usa-navy); font-size: 1.5rem; margin-bottom: 0.25rem; }
-    .faculty-info p { color: #4B5563; margin-bottom: 0.5rem; }
+    .faculty-card { background: white; border-radius: 12px; border: 1px solid var(--border); padding: 3rem; display: flex; gap: 2.5rem; align-items: center; margin-top: 4rem; box-shadow: 0 4px 16px rgba(0,0,0,0.04); border-left: 6px solid var(--usa-gold); flex-wrap: wrap; }
+    .faculty-details h3 { color: var(--usa-navy); font-size: 1.75rem; margin-bottom: 0.5rem; font-weight: 800; }
+    .faculty-details p { color: #475569; font-size: 1.05rem; margin-bottom: 0.5rem; }
+    .faculty-details .role { color: var(--usa-red); font-weight: 700; margin-bottom: 1rem; display: block; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px; }
 
     /* Footer */
-    footer { background-color: var(--usa-navy); color: #93C5FD; text-align: center; padding: 2.5rem 1.5rem; font-size: 0.9rem; border-top: 4px solid var(--usa-red); margin-top: 4rem; }
+    footer { background-color: var(--usa-navy); color: #93C5FD; text-align: center; padding: 3rem 1.5rem; font-size: 0.95rem; border-top: 4px solid var(--usa-red); margin-top: 5rem; }
     footer strong { color: white; }
   </style>
 </head>
@@ -84,132 +88,118 @@
   <!-- Navigation -->
   <header>
     <div class="brand">
-      <img src="Library Media Community Badge.png" alt="LMC Logo" class="brand-logo">
+      <img src="LMS Logo.jpeg" alt="LMS Logo" class="brand-logo">
       <div>
-        <div class="brand-title">Library Media Community</div>
+        <div class="brand-title">Library Media Specialist Community</div>
         <div class="brand-subtitle">University of South Alabama</div>
       </div>
     </div>
     <nav>
       <a href="#about">About</a>
-      <a href="#program">M.Ed. & Pathways</a>
+      <a href="#network-hub">Network & M.Ed. Hub</a>
       <a href="#faq">Certification FAQ</a>
       <a href="#faculty">Faculty</a>
-      <a href="https://discord.gg/ZZGnaVb3zE" target="_blank" class="nav-btn">Join Discord</a>
+      <a href="https://discord.gg/ZZGnaVb3zE" target="_blank" class="nav-btn">Join Discord Hub</a>
     </nav>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
-    <img src="Library Media Community Badge.png" alt="LMC Logo" class="hero-mascot">
+    <img src="LMS Logo.jpeg" alt="LMS Logo" class="hero-badge">
     <h1>Connecting Educators, Librarians & Researchers</h1>
     <p>Bridging local gaps across Mobile and the Gulf Coast by empowering school media specialists, sharing open educational resources, and building collaborative academic networks.</p>
     <div class="hero-actions">
       <a href="https://tinyurl.com/librarymediacommunity" target="_blank" class="btn-primary">Join Community Hub</a>
-      <a href="#program" class="btn-secondary">Explore M.Ed. & Network Hub</a>
+      <a href="#network-hub" class="btn-secondary">Explore M.Ed. & Network Portal</a>
     </div>
   </section>
 
-  <!-- Main Content -->
+  <!-- Main Content Container -->
   <div class="container" id="about">
-    <div class="section-title">
-      <h2>Our Mission & Community Pillars</h2>
-      <p>Spearheaded within the Department of Counseling and Instructional Sciences at South Alabama.</p>
+    <div class="section-header">
+      <h2>Our Core Community Pillars</h2>
+      <p>Spearheaded within the Department of Counseling and Instructional Sciences at South Alabama to foster collaborative growth.</p>
     </div>
 
-    <div class="grid">
+    <div class="grid-3">
       <div class="card" style="border-top-color: var(--usa-red);">
-        <h3>📚 Resource & Knowledge Sharing</h3>
-        <p>Exchange open-access lesson plans, digital literacy toolkits, AI evaluation guides, and curriculum frameworks designed for P-12 school librarians.</p>
+        <div class="card-icon">📚</div>
+        <h3>Resource & Knowledge Sharing</h3>
+        <p>Exchange open-access lesson plans, digital literacy toolkits, AI evaluation guides, and curriculum frameworks specifically designed for P-12 school librarians and media specialists.</p>
       </div>
 
       <div class="card" style="border-top-color: var(--usa-gold);">
-        <h3>🔬 Collaborative Research</h3>
-        <p>Partner on action research, grant initiatives, and empirical studies exploring information literacy, game-based learning, and youth media education.</p>
+        <div class="card-icon">🔬</div>
+        <h3>Collaborative Research</h3>
+        <p>Partner on action research, grant initiatives, and empirical studies evaluating information literacy, game-based learning, digital empathy, and youth media education.</p>
       </div>
 
       <div class="card" style="border-top-color: var(--usa-navy);">
-        <h3>🤝 Professional Networking</h3>
-        <p>Connect with local K-12 educators, technology coordinators, and public librarians through regular meetups, webinars, and active community channels.</p>
+        <div class="card-icon">🤝</div>
+        <h3>Professional Networking</h3>
+        <p>Connect directly with local K-12 educators, technology coordinators, and public librarians through regular meetups, webinars, and active community discussion channels.</p>
       </div>
     </div>
 
-    <!-- M.Ed. Program & Embedded Knowledge Site -->
-    <div id="program" style="margin-top: 4rem;">
-      <div class="section-title">
-        <h2>M.Ed. in Educational Media & Pathways</h2>
-        <p>Explore program structure, certification pathways, and curriculum resources through our integrated network hub[cite: 2].</p>
+    <!-- Embedded Network Knowledge Hub & M.Ed. Pathways -->
+    <div class="embed-section" id="network-hub">
+      <div class="embed-header">
+        <div>
+          <h3>Interactive Network Knowledge Hub & M.Ed. Pathways</h3>
+          <p style="color: #64748B; font-size: 0.95rem; margin-top: 4px;">Explore program requirements, certification tracks, and curriculum resources below[cite: 2].</p>
+        </div>
+        <a href="https://johnnycholmc.github.io/CINS/?program=LIB_MED" target="_blank" class="btn-primary" style="font-size: 0.9rem; padding: 0.6rem 1.25rem;">Open Full Screen ↗</a>
       </div>
-
-      <div class="grid" style="margin-bottom: 2rem;">
-        <div class="card">
-          <h3>Core Courses (18 hrs)</h3>
-          <p>Microcomputing Systems (EDM 510), Workshop for Ed Media (EDM 530), Curriculum Media (EDM 540), Information Literacy (EDM 580), Media Center Mgmt (EDM 581), and Library Media Programs (EDM 583)[cite: 25].</p>
-        </div>
-        <div class="card">
-          <h3>Diversity & Research (6 hrs)</h3>
-          <p>Multicultural coursework (EDU 567, EDF 515, or EPY 502) paired with Educational Research and Evaluation (IDE 510)[cite: 25].</p>
-        </div>
-        <div class="card">
-          <h3>Internships & Practicum (6 hrs)</h3>
-          <p>Hands-on field experiences across Internship A, B, and C (EDM 595A/B/C) to build real-world mastery under expert guidance[cite: 13, 25].</p>
-        </div>
-      </div>
-
-      <!-- Embedded Knowledge Site -->
-      <div class="embed-container">
-        <div class="embed-header">
-          <h3>Interactive Network Knowledge Hub</h3>
-          <a href="https://johnnycholmc.github.io/CINS/?program=LIB_MED" target="_blank" class="btn-primary" style="font-size: 0.85rem; padding: 0.5rem 1rem;">Open in Full Screen ↗</a>
-        </div>
-        <div class="embed-wrapper">
-          <iframe src="https://johnnycholmc.github.io/CINS/?program=LIB_MED" title="Library Media Network Knowledge Site"></iframe>
-        </div>
+      <div class="embed-frame-wrapper">
+        <iframe src="https://johnnycholmc.github.io/CINS/?program=LIB_MED" title="CINS Library Media Network Knowledge Hub"></iframe>
       </div>
     </div>
 
     <!-- Certification FAQ Section -->
-    <div id="faq" style="margin-top: 4rem;">
-      <div class="section-title">
+    <div id="faq">
+      <div class="section-header" style="margin-top: 4rem;">
         <h2>Library Media Certification FAQ</h2>
         <p>Quick answers regarding reciprocity, certification pathways, and graduate credit transfers[cite: 3, 4, 5].</p>
       </div>
 
-      <div class="faq-container">
-        <div class="faq-item">
-          <div class="faq-q">1. I hold an out-of-state Library Media certificate. Can I transfer it to Alabama?</div>
-          <div class="faq-a">You may be eligible through certificate reciprocity if you hold a valid out-of-state certificate, at least a master's degree, and 2 full years of P-12 educational experience. The Alabama State Department of Education (ALSDE) makes the final determination[cite: 3].</div>
+      <div class="faq-wrapper">
+        <div class="faq-question-item">
+          <div class="faq-q-title">I hold an out-of-state Library Media certificate. Can I transfer it to Alabama?</div>
+          <div class="faq-a-text">You may be eligible through certificate reciprocity if you hold a valid out-of-state professional certificate, at least a master's degree, and 2 full years of P-12 educational experience. The Alabama State Department of Education (ALSDE) makes the final determination[cite: 3].</div>
         </div>
 
-        <div class="faq-item">
-          <div class="faq-q">2. I have an MLIS but no Library Media certificate. Can I become a school librarian in Alabama?</div>
-          <div class="faq-a">You can explore our Alabama-approved Library Media certification program. Previous graduate coursework is reviewed, and up to 9 credit hours of eligible coursework may apply toward electives[cite: 4, 5].</div>
+        <div class="faq-question-item">
+          <div class="faq-q-title">I have an MLIS but no Library Media certificate. Can I become a school librarian in Alabama?</div>
+          <div class="faq-a-text">You can explore our Alabama-approved Library Media certification program. Previous graduate coursework is reviewed, and up to 9 credit hours of eligible coursework may apply toward program electives[cite: 4, 5].</div>
         </div>
 
-        <div class="faq-item">
-          <div class="faq-q">3. I already have an Alabama teaching certificate and master's degree. Do I need another full master's?</div>
-          <div class="faq-a">Not necessarily. You may be eligible for a certification-only pathway focusing primarily on Educational Media core courses and internships, subject to transcript review[cite: 5].</div>
+        <div class="faq-question-item">
+          <div class="faq-q-title">I already have an Alabama teaching certificate and master's degree. Do I need another full master's?</div>
+          <div class="faq-a-text">Not necessarily. You may be eligible for a certification-only pathway focusing primarily on Educational Media core courses and internships, subject to official transcript review[cite: 5].</div>
         </div>
 
-        <div class="faq-item">
-          <div class="faq-q">4. Can my previous MLIS courses transfer?</div>
-          <div class="faq-a">Up to 9 credit hours of graduate-level coursework may potentially transfer toward elective requirements after syllabus and transcript review[cite: 5].</div>
+        <div class="faq-question-item">
+          <div class="faq-q-title">Can my previous MLIS or graduate courses transfer?</div>
+          <div class="faq-a-text">Up to 9 credit hours of graduate-level coursework may potentially transfer toward elective requirements after syllabus and transcript review[cite: 5].</div>
         </div>
 
-        <div class="faq-item">
-          <div class="faq-q">5. What is the easiest way to determine my pathway?</div>
-          <div class="faq-a">If you have an out-of-state certificate, check ALSDE reciprocity[cite: 7]. If you have an MLIS without certification, explore our program[cite: 7]. If you hold an AL certificate + master's, ask about the certification-only option[cite: 7]. Request a transcript review to clarify[cite: 7]!</div>
+        <div class="faq-question-item">
+          <div class="faq-q-title">What is the easiest way to determine my pathway?</div>
+          <div class="faq-a-text">If you have an out-of-state certificate, check ALSDE reciprocity[cite: 7]. If you have an MLIS without certification, explore our program[cite: 7]. If you hold an AL certificate + master's, ask about the certification-only option[cite: 7]. Request a transcript review to clarify your best route[cite: 7]!</div>
         </div>
       </div>
     </div>
 
     <!-- Faculty Contact Section -->
-    <div id="faculty" class="faculty-box">
-      <div class="faculty-info">
-        <h3>Program Faculty: Dr. Johnny Cho</h3>
+    <div id="faculty" class="faculty-card">
+      <div class="faculty-details">
+        <span class="role">Program Faculty & Leadership</span>
+        <h3>Dr. Johnny Cho</h3>
         <p>Assistant Professor of Library Media, Department of Counseling and Instructional Sciences</p>
-        <p><strong>Email:</strong> ycho@southalabama.edu | <strong>Phone:</strong> (251) 380-2619[cite: 38]</p>
-        <p style="margin-top: 1rem;"><a href="https://tinyurl.com/librarymediacommunity" target="_blank" class="btn-primary" style="display: inline-block;">Connect on Linktree / Community Hub</a></p>
+        <p style="margin-top: 0.75rem;"><strong>Email:</strong> ycho@southalabama.edu | <strong>Phone:</strong> (251) 380-2619[cite: 38]</p>
+        <div style="margin-top: 1.5rem;">
+          <a href="https://tinyurl.com/librarymediacommunity" target="_blank" class="btn-primary" style="display: inline-block;">Connect on Community Linktree</a>
+        </div>
       </div>
     </div>
 
@@ -217,7 +207,7 @@
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2026 <strong>Library Media Community (LMC)</strong>. University of South Alabama — College of Education and Professional Studies[cite: 37].</p>
+    <p>&copy; 2026 <strong>Library Media Specialist Community</strong>. University of South Alabama — College of Education and Professional Studies[cite: 37].</p>
   </footer>
 
 </body>
