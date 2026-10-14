@@ -1,214 +1,580 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Library Media Specialist Community | University of South Alabama</title>
-  <style>
-    :root {
-      --usa-navy: #00205B;
-      --usa-red: #CC0000;
-      --usa-gold: #FFC72C;
-      --light-bg: #F8FAFC;
-      --card-bg: #FFFFFF;
-      --text: #1E293B;
-      --border: #E2E8F0;
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    navy: {
+                        50: '#f0f4f8',
+                        100: '#d9e2ec',
+                        800: '#102a43',
+                        900: '#0A192F',
+                        950: '#060e1b',
+                    },
+                    teal: {
+                        400: '#26d0ce',
+                        500: '#00A896',
+                        600: '#00897b',
+                        700: '#00695c',
+                    },
+                    gold: {
+                        400: '#f6c343',
+                        500: '#F2A900',
+                        600: '#d99700',
+                    }
+                },
+                fontFamily: {
+                    sans: ['Plus Jakarta Sans', 'sans-serif'],
+                }
+            }
+        }
     }
+</script>
+<style>
+    .glass-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .hero-gradient {
+        background: linear-gradient(135deg, #0A192F 0%, #112240 50%, #1E3A8A 100%);
+    }
+    .text-gradient {
+        background: linear-gradient(135deg, #00A896 0%, #F2A900 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .tab-btn.active {
+        color: #00A896;
+        border-bottom: 3px solid #00A896;
+        background-color: rgba(0, 168, 150, 0.05);
+    }
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+    }
+    .faq-answer.open {
+        max-height: 1000px;
+        transition: max-height 0.5s ease-in-out;
+    }
+</style>
+
+
+<!-- Navigation Header -->
+<header class="sticky top-0 z-50 bg-navy-900/95 backdrop-blur-md text-white shadow-lg border-b border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+            <!-- Brand / Logo Section -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
+                <div class="relative w-12 h-12 rounded-full bg-white p-1 shadow-md flex items-center justify-center border-2 border-gold-500 overflow-hidden group">
+                    <img src="LMS Logo.jpeg" alt="Library Media Specialist Logo" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-300">
+                </div>
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="font-extrabold text-xl tracking-tight text-white">LMC</span>
+                        <span class="text-xs bg-teal-500/20 text-teal-400 font-semibold px-2 py-0.5 rounded-full border border-teal-500/30">USA CEPS</span>
+                    </div>
+                    <p class="text-xs text-slate-300 font-medium hidden sm:block">Library Media Community & Master's Program</p>
+                </div>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                <button onclick="switchTab('home')" id="nav-home" class="tab-btn active px-3 py-2 rounded-t-md text-sm font-semibold transition-all">
+                    <i class="fa-solid fa-house mr-1.5 text-xs"></i>Home Hub
+                </button>
+                <button onclick="switchTab('med-program')" id="nav-med-program" class="tab-btn px-3 py-2 rounded-t-md text-sm font-semibold transition-all">
+                    <i class="fa-solid fa-graduation-cap mr-1.5 text-xs"></i>M.Ed. & Pathways
+                </button>
+                <button onclick="switchTab('internship')" id="nav-internship" class="tab-btn px-3 py-2 rounded-t-md text-sm font-semibold transition-all">
+                    <i class="fa-solid fa-briefcase mr-1.5 text-xs"></i>Internship Hub
+                </button>
+                <button onclick="switchTab('faq')" id="nav-faq" class="tab-btn px-3 py-2 rounded-t-md text-sm font-semibold transition-all">
+                    <i class="fa-solid fa-circle-question mr-1.5 text-xs"></i>FAQ & Pathways
+                </button>
+            </nav>
+
+            <!-- Actions / Call to Action -->
+            <div class="hidden lg:flex items-center space-x-3">
+                <a href="https://discord.gg/ZZGnaVb3zE" target="_blank" class="bg-indigo-600/90 hover:bg-indigo-600 text-white px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center shadow-sm">
+                    <i class="fa-brands fa-discord mr-1.5 text-sm"></i> Join Discord
+                </a>
+                <a href="https://www.southalabama.edu/departments/admissions/graduate.html" target="_blank" class="bg-gold-500 hover:bg-gold-600 text-navy-900 px-4 py-2 rounded-lg text-xs font-extrabold transition shadow-md flex items-center">
+                    Apply Now <i class="fa-solid fa-arrow-right ml-1.5 text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <div class="md:hidden flex items-center space-x-2">
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white p-2 rounded-md focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Nav Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden bg-navy-950 border-t border-navy-800 px-4 pt-2 pb-4 space-y-2">
+        <button onclick="switchTab('home')" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-navy-800 flex items-center">
+            <i class="fa-solid fa-house w-6 text-teal-400"></i> Home Community Hub
+        </button>
+        <button onclick="switchTab('med-program')" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-navy-800 flex items-center">
+            <i class="fa-solid fa-graduation-cap w-6 text-gold-400"></i> M.Ed. Program & Pathways
+        </button>
+        <button onclick="switchTab('internship')" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-navy-800 flex items-center">
+            <i class="fa-solid fa-briefcase w-6 text-teal-400"></i> EDM 595 Internship Hub
+        </button>
+        <button onclick="switchTab('faq')" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-navy-800 flex items-center">
+            <i class="fa-solid fa-circle-question w-6 text-gold-400"></i> FAQ & Reciprocity Guide
+        </button>
+        <div class="pt-2 border-t border-navy-800 flex flex-col space-y-2">
+            <a href="https://discord.gg/ZZGnaVb3zE" target="_blank" class="w-full bg-indigo-600 text-white text-center py-2 rounded-lg text-xs font-bold">
+                <i class="fa-brands fa-discord mr-1"></i> Join Discord Server
+            </a>
+            <a href="https://www.southalabama.edu/departments/admissions/graduate.html" target="_blank" class="w-full bg-gold-500 text-navy-900 text-center py-2 rounded-lg text-xs font-extrabold">
+                Apply to South Alabama
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- Main Dynamic Content Container -->
+<main class="flex-grow">
     
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text); background-color: var(--light-bg); line-height: 1.6; }
+    <!-- Home Hub Tab -->
+    <section id="tab-home" class="tab-content block">
+        <div class="hero-gradient text-white relative overflow-hidden py-16 lg:py-24">
+            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#00A896_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center space-x-2 bg-teal-500/10 border border-teal-500/30 rounded-full px-4 py-1.5 text-xs text-teal-300 font-semibold">
+                            <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                            <span>University of South Alabama • College of Ed</span>
+                        </div>
+                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                            Connecting <span class="text-gradient">Educators, Librarians & Researchers</span>
+                        </h1>
+                        <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                            Bridging the gap across Mobile and the Gulf Coast region. We share media literacy resources, collaborate on emerging educational technologies, and support future school media specialists.
+                        </p>
+                        
+                        <div class="pt-4 flex flex-wrap gap-3 justify-center lg:justify-start">
+                            <a href="https://discord.gg/ZZGnaVb3zE" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg transition flex items-center text-sm">
+                                <i class="fa-brands fa-discord text-lg mr-2"></i> Join Community Discord
+                            </a>
+                            <button onclick="switchTab('med-program')" class="bg-teal-500 hover:bg-teal-600 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg transition flex items-center text-sm">
+                                <i class="fa-solid fa-graduation-cap text-lg mr-2"></i> Explore M.Ed. Degree
+                            </button>
+                            <button onclick="scrollToPathwayFinder()" class="bg-navy-800 hover:bg-navy-700 text-gold-400 border border-gold-500/40 font-bold px-5 py-3.5 rounded-xl transition flex items-center text-sm">
+                                <i class="fa-solid fa-compass mr-2"></i> Find Your Certification Pathway
+                            </button>
+                        </div>
+                    </div>
 
-    /* Rich Header & Navigation */
-    header { background-color: var(--usa-navy); color: white; padding: 1rem 2.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--usa-red); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-    .brand { display: flex; align-items: center; gap: 16px; }
-    .brand-logo { width: 54px; height: 54px; border-radius: 50%; object-fit: cover; border: 2px solid var(--usa-gold); background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
-    .brand-title { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.5px; line-height: 1.1; }
-    .brand-subtitle { font-size: 0.8rem; color: #93C5FD; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
-    
-    nav { display: flex; gap: 1.5rem; align-items: center; }
-    nav a { color: #E2E8F0; text-decoration: none; font-size: 0.95rem; font-weight: 600; transition: color 0.2s ease; }
-    nav a:hover { color: var(--usa-gold); }
-    .nav-btn { background-color: var(--usa-red); color: white !important; padding: 0.6rem 1.25rem; border-radius: 6px; font-weight: 700; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-    .nav-btn:hover { background-color: #A30000; }
-
-    /* Hero Section */
-    .hero { background: linear-gradient(135deg, var(--usa-navy) 0%, #001233 100%); color: white; text-align: center; padding: 5.5rem 1.5rem 4.5rem; border-bottom: 6px solid var(--usa-gold); position: relative; overflow: hidden; }
-    .hero-badge { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid var(--usa-gold); margin-bottom: 1.75rem; box-shadow: 0 8px 24px rgba(0,0,0,0.4); background: white; }
-    .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1.2rem; line-height: 1.2; letter-spacing: -0.5px; }
-    .hero p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 2.5rem; color: #CBD5E1; }
-    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    
-    .btn-primary { background-color: var(--usa-red); color: white; padding: 0.85rem 2rem; border-radius: 6px; font-weight: 700; text-decoration: none; transition: transform 0.15s ease, background 0.2s; box-shadow: 0 4px 10px rgba(204,0,0,0.3); }
-    .btn-primary:hover { background-color: #A30000; transform: translateY(-2px); }
-    .btn-secondary { border: 2px solid var(--usa-gold); color: white; padding: 0.85rem 2rem; border-radius: 6px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
-    .btn-secondary:hover { background-color: rgba(255, 199, 44, 0.15); }
-
-    /* Container & Section Layouts */
-    .container { max-width: 1200px; margin: 0 auto; padding: 4.5rem 1.5rem; }
-    .section-header { text-align: center; margin-bottom: 3.5rem; }
-    .section-header h2 { font-size: 2.25rem; color: var(--usa-navy); margin-bottom: 0.75rem; font-weight: 800; }
-    .section-header p { color: #64748B; font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
-
-    /* Rich Feature Grids */
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.5rem; }
-    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 2.5rem 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.04); border-top: 6px solid var(--usa-navy); transition: transform 0.2s ease, box-shadow 0.2s ease; }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-    .card-icon { font-size: 2.2rem; margin-bottom: 1.25rem; display: inline-block; }
-    .card h3 { font-size: 1.4rem; color: var(--usa-navy); margin-bottom: 0.85rem; font-weight: 700; }
-    .card p { color: #475569; font-size: 1rem; line-height: 1.6; }
-
-    /* Embedded Knowledge Hub */
-    .embed-section { background: white; border-radius: 14px; border: 1px solid var(--border); padding: 2rem; box-shadow: 0 6px 20px rgba(0,0,0,0.05); margin-top: 4rem; }
-    .embed-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
-    .embed-header h3 { color: var(--usa-navy); font-size: 1.5rem; font-weight: 700; }
-    .embed-frame-wrapper { width: 100%; height: 700px; border: 2px solid var(--border); border-radius: 8px; overflow: hidden; background: #FFF; }
-    .embed-frame-wrapper iframe { width: 100%; height: 100%; border: none; }
-
-    /* FAQ Accordion Styling */
-    .faq-wrapper { background: white; border-radius: 12px; border: 1px solid var(--border); padding: 2.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.03); margin-top: 3rem; }
-    .faq-question-item { border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
-    .faq-question-item:last-child { border-bottom: none; }
-    .faq-q-title { font-weight: 700; color: var(--usa-navy); font-size: 1.15rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; }
-    .faq-q-title::before { content: "Q:"; color: var(--usa-red); font-weight: 900; }
-    .faq-a-text { color: #475569; font-size: 1rem; padding-left: 1.5rem; }
-
-    /* Faculty Section */
-    .faculty-card { background: white; border-radius: 12px; border: 1px solid var(--border); padding: 3rem; display: flex; gap: 2.5rem; align-items: center; margin-top: 4rem; box-shadow: 0 4px 16px rgba(0,0,0,0.04); border-left: 6px solid var(--usa-gold); flex-wrap: wrap; }
-    .faculty-details h3 { color: var(--usa-navy); font-size: 1.75rem; margin-bottom: 0.5rem; font-weight: 800; }
-    .faculty-details p { color: #475569; font-size: 1.05rem; margin-bottom: 0.5rem; }
-    .faculty-details .role { color: var(--usa-red); font-weight: 700; margin-bottom: 1rem; display: block; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px; }
-
-    /* Footer */
-    footer { background-color: var(--usa-navy); color: #93C5FD; text-align: center; padding: 3rem 1.5rem; font-size: 0.95rem; border-top: 4px solid var(--usa-red); margin-top: 5rem; }
-    footer strong { color: white; }
-  </style>
-</head>
-<body>
-
-  <!-- Navigation -->
-  <header>
-    <div class="brand">
-      <img src="LMS Logo.jpeg" alt="LMS Logo" class="brand-logo">
-      <div>
-        <div class="brand-title">Library Media Specialist Community</div>
-        <div class="brand-subtitle">University of South Alabama</div>
-      </div>
-    </div>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#network-hub">Network & M.Ed. Hub</a>
-      <a href="#faq">Certification FAQ</a>
-      <a href="#faculty">Faculty</a>
-      <a href="https://discord.gg/ZZGnaVb3zE" target="_blank" class="nav-btn">Join Discord Hub</a>
-    </nav>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <img src="LMS Logo.jpeg" alt="LMS Logo" class="hero-badge">
-    <h1>Connecting Educators, Librarians & Researchers</h1>
-    <p>Bridging local gaps across Mobile and the Gulf Coast by empowering school media specialists, sharing open educational resources, and building collaborative academic networks.</p>
-    <div class="hero-actions">
-      <a href="https://tinyurl.com/librarymediacommunity" target="_blank" class="btn-primary">Join Community Hub</a>
-      <a href="#network-hub" class="btn-secondary">Explore M.Ed. & Network Portal</a>
-    </div>
-  </section>
-
-  <!-- Main Content Container -->
-  <div class="container" id="about">
-    <div class="section-header">
-      <h2>Our Core Community Pillars</h2>
-      <p>Spearheaded within the Department of Counseling and Instructional Sciences at South Alabama to foster collaborative growth.</p>
-    </div>
-
-    <div class="grid-3">
-      <div class="card" style="border-top-color: var(--usa-red);">
-        <div class="card-icon">📚</div>
-        <h3>Resource & Knowledge Sharing</h3>
-        <p>Exchange open-access lesson plans, digital literacy toolkits, AI evaluation guides, and curriculum frameworks specifically designed for P-12 school librarians and media specialists.</p>
-      </div>
-
-      <div class="card" style="border-top-color: var(--usa-gold);">
-        <div class="card-icon">🔬</div>
-        <h3>Collaborative Research</h3>
-        <p>Partner on action research, grant initiatives, and empirical studies evaluating information literacy, game-based learning, digital empathy, and youth media education.</p>
-      </div>
-
-      <div class="card" style="border-top-color: var(--usa-navy);">
-        <div class="card-icon">🤝</div>
-        <h3>Professional Networking</h3>
-        <p>Connect directly with local K-12 educators, technology coordinators, and public librarians through regular meetups, webinars, and active community discussion channels.</p>
-      </div>
-    </div>
-
-    <!-- Embedded Network Knowledge Hub & M.Ed. Pathways -->
-    <div class="embed-section" id="network-hub">
-      <div class="embed-header">
-        <div>
-          <h3>Interactive Network Knowledge Hub & M.Ed. Pathways</h3>
-          <p style="color: #64748B; font-size: 0.95rem; margin-top: 4px;">Explore program requirements, certification tracks, and curriculum resources below[cite: 2].</p>
-        </div>
-        <a href="https://johnnycholmc.github.io/CINS/?program=LIB_MED" target="_blank" class="btn-primary" style="font-size: 0.9rem; padding: 0.6rem 1.25rem;">Open Full Screen ↗</a>
-      </div>
-      <div class="embed-frame-wrapper">
-        <iframe src="https://johnnycholmc.github.io/CINS/?program=LIB_MED" title="CINS Library Media Network Knowledge Hub"></iframe>
-      </div>
-    </div>
-
-    <!-- Certification FAQ Section -->
-    <div id="faq">
-      <div class="section-header" style="margin-top: 4rem;">
-        <h2>Library Media Certification FAQ</h2>
-        <p>Quick answers regarding reciprocity, certification pathways, and graduate credit transfers[cite: 3, 4, 5].</p>
-      </div>
-
-      <div class="faq-wrapper">
-        <div class="faq-question-item">
-          <div class="faq-q-title">I hold an out-of-state Library Media certificate. Can I transfer it to Alabama?</div>
-          <div class="faq-a-text">You may be eligible through certificate reciprocity if you hold a valid out-of-state professional certificate, at least a master's degree, and 2 full years of P-12 educational experience. The Alabama State Department of Education (ALSDE) makes the final determination[cite: 3].</div>
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative group max-w-sm w-full">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-teal-500 to-gold-500 rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-1000"></div>
+                            <div class="relative glass-card bg-navy-900 rounded-3xl p-8 border border-navy-700 text-center shadow-2xl space-y-6">
+                                <div class="w-48 h-48 mx-auto relative rounded-3xl bg-white border-4 border-gold-500 shadow-xl flex items-center justify-center p-4 transform group-hover:scale-105 transition duration-300 overflow-hidden">
+                                    <img src="LMS Logo.jpeg" alt="Library Media Specialist Badge Logo" class="w-full h-full object-cover rounded-2xl">
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Library Media Community</h3>
+                                    <p class="text-xs text-teal-300 font-semibold mt-1">Open Professional Network & Research Hub</p>
+                                </div>
+                                <div class="pt-4 border-t border-navy-800 grid grid-cols-2 gap-3 text-left text-xs">
+                                    <div class="bg-navy-950/80 p-3 rounded-xl border border-navy-800">
+                                        <span class="block text-slate-400 font-medium">Lead Faculty</span>
+                                        <span class="font-bold text-slate-100">Dr. Johnny Cho</span>
+                                    </div>
+                                    <div class="bg-navy-950/80 p-3 rounded-xl border border-navy-800">
+                                        <span class="block text-slate-400 font-medium">Location</span>
+                                        <span class="font-bold text-slate-100">USA - Mobile, AL</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="faq-question-item">
-          <div class="faq-q-title">I have an MLIS but no Library Media certificate. Can I become a school librarian in Alabama?</div>
-          <div class="faq-a-text">You can explore our Alabama-approved Library Media certification program. Previous graduate coursework is reviewed, and up to 9 credit hours of eligible coursework may apply toward program electives[cite: 4, 5].</div>
+        <!-- Pillars -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="text-center max-w-3xl mx-auto space-y-3 mb-12">
+                <h2 class="text-xs font-extrabold uppercase tracking-widest text-teal-600">Our Community Mission</h2>
+                <p class="text-3xl font-extrabold text-navy-900">Empowering Regional Media Specialists</p>
+                <p class="text-slate-600 text-sm">We provide an inclusive, open environment where K-12 educators, media specialists, librarians, and university researchers connect and learn together.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition border-t-4 border-t-teal-500 space-y-4">
+                    <div class="w-12 h-12 bg-teal-50 text-teal-600 rounded-xl flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-users-rectangle"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900">1. Open Professional Network</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Connect with fellow school librarians across Mobile County, Baldwin County, and the broader Gulf Coast area.</p>
+                    <a href="https://discord.gg/ZZGnaVb3zE" target="_blank" class="inline-flex items-center text-xs font-bold text-teal-600 hover:text-teal-700">
+                        Join Discord Community <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition border-t-4 border-t-gold-500 space-y-4">
+                    <div class="w-12 h-12 bg-amber-50 text-gold-600 rounded-xl flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900">2. Collaborative Research & EdTech</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Partner on action research projects, explore AI literacy tools, digital citizenship frameworks, and game-based learning.</p>
+                    <button onclick="switchTab('med-program')" class="inline-flex items-center text-xs font-bold text-gold-600 hover:text-gold-700">
+                        Explore Academic Research <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition border-t-4 border-t-navy-800 space-y-4">
+                    <div class="w-12 h-12 bg-slate-100 text-navy-900 rounded-xl flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-certificate"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900">3. Certification & Career Growth</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Clear pathways for educators seeking ALSDE Library Media Certification, M.Ed. degrees, or transcript credit evaluations.</p>
+                    <button onclick="switchTab('faq')" class="inline-flex items-center text-xs font-bold text-navy-800 hover:text-navy-900">
+                        Check Reciprocity Guide <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <div class="faq-question-item">
-          <div class="faq-q-title">I already have an Alabama teaching certificate and master's degree. Do I need another full master's?</div>
-          <div class="faq-a-text">Not necessarily. You may be eligible for a certification-only pathway focusing primarily on Educational Media core courses and internships, subject to official transcript review[cite: 5].</div>
+        <!-- Pathway Finder Widget -->
+        <div id="pathway-finder-section" class="bg-navy-900 text-white py-16">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-navy-800 rounded-3xl p-6 sm:p-10 border border-navy-700 shadow-2xl">
+                    <div class="text-center max-w-2xl mx-auto space-y-2 mb-8">
+                        <span class="bg-gold-500/20 text-gold-400 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider border border-gold-500/30">Interactive Tool</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Find Your Library Media Pathway</h2>
+                        <p class="text-slate-300 text-sm">Select your current educational and teaching credential background to find your best option.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                        <button onclick="selectPathway('A')" id="btn-path-A" class="path-option text-left p-4 rounded-xl border-2 border-navy-700 bg-navy-950 hover:border-teal-500 transition space-y-1">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-sm text-teal-400">Pathway A</span>
+                                <i class="fa-solid fa-passport text-xs text-slate-500"></i>
+                            </div>
+                            <p class="text-xs text-slate-200 font-semibold">I hold an Out-of-State Library Media Educator Certificate</p>
+                        </button>
+
+                        <button onclick="selectPathway('B')" id="btn-path-B" class="path-option text-left p-4 rounded-xl border-2 border-navy-700 bg-navy-950 hover:border-teal-500 transition space-y-1">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-sm text-gold-400">Pathway B</span>
+                                <i class="fa-solid fa-book-bookmark text-xs text-slate-500"></i>
+                            </div>
+                            <p class="text-xs text-slate-200 font-semibold">I have an MLIS / Master's degree (No Educator Certificate)</p>
+                        </button>
+
+                        <button onclick="selectPathway('C')" id="btn-path-C" class="path-option text-left p-4 rounded-xl border-2 border-navy-700 bg-navy-950 hover:border-teal-500 transition space-y-1">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-sm text-teal-400">Pathway C</span>
+                                <i class="fa-solid fa-chalkboard-user text-xs text-slate-500"></i>
+                            </div>
+                            <p class="text-xs text-slate-200 font-semibold">I hold an Alabama Teaching Cert + Master's Degree</p>
+                        </button>
+
+                        <button onclick="selectPathway('D')" id="btn-path-D" class="path-option text-left p-4 rounded-xl border-2 border-navy-700 bg-navy-950 hover:border-teal-500 transition space-y-1">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-sm text-gold-400">Pathway D</span>
+                                <i class="fa-solid fa-arrows-split-up-and-left text-xs text-slate-500"></i>
+                            </div>
+                            <p class="text-xs text-slate-200 font-semibold">I hold an Out-of-State Teaching Cert (Non-Library Media)</p>
+                        </button>
+                    </div>
+
+                    <div id="pathway-result" class="bg-navy-950 p-6 rounded-2xl border border-teal-500/40 space-y-3">
+                        <div class="flex items-center space-x-2 text-teal-400 font-bold text-base">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span id="path-title">Select an option above to view your recommended path</span>
+                        </div>
+                        <p id="path-desc" class="text-xs text-slate-300 leading-relaxed">
+                            Click any button above based on your current degrees and certifications to view reciprocity eligibility, transfer credits, and required steps.
+                        </p>
+                        <div id="path-action" class="pt-2 hidden">
+                            <button onclick="switchTab('med-program')" class="bg-teal-500 hover:bg-teal-600 text-white font-bold text-xs px-4 py-2 rounded-lg">
+                                View USA Program Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- M.Ed. & Pathways Tab (Embedded CINS Knowledge Hub) -->
+    <section id="tab-med-program" class="tab-content hidden">
+        <div class="bg-navy-900 text-white py-12 border-b border-navy-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+                <div class="flex items-center space-x-2 text-xs text-teal-400 font-bold">
+                    <span>USA College of Education</span>
+                    <span>•</span>
+                    <span>M.Ed. in Educational Media & Network Hub</span>
+                </div>
+                <h1 class="text-3xl sm:text-4xl font-extrabold">M.Ed. Program & Network Knowledge Hub</h1>
+                <p class="text-slate-300 text-sm max-w-3xl leading-relaxed">
+                    Explore our online program structure, curriculum requirements, and embedded CINS network knowledge portal below.
+                </p>
+            </div>
         </div>
 
-        <div class="faq-question-item">
-          <div class="faq-q-title">Can my previous MLIS or graduate courses transfer?</div>
-          <div class="faq-a-text">Up to 9 credit hours of graduate-level coursework may potentially transfer toward elective requirements after syllabus and transcript review[cite: 5].</div>
+        <!-- Embedded CINS Site -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xl space-y-4">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-100 pb-4">
+                    <div>
+                        <h3 class="font-extrabold text-xl text-navy-900">CINS Library Media Network Knowledge Site</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">Interactive program portal and resource archive.</p>
+                    </div>
+                    <a href="https://johnnycholmc.github.io/CINS/?program=LIB_MED" target="_blank" class="bg-teal-500 hover:bg-teal-600 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center shadow-sm">
+                        Open Full Screen <i class="fa-solid fa-arrow-up-right-from-square ml-1.5"></i>
+                    </a>
+                </div>
+                <div class="w-full h-[700px] border border-slate-300 rounded-2xl overflow-hidden bg-slate-100 shadow-inner">
+                    <iframe src="https://johnnycholmc.github.io/CINS/?program=LIB_MED" title="CINS Library Media Network Knowledge Site" class="w-full h-full border-0"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Internship Hub Tab -->
+    <section id="tab-internship" class="tab-content hidden">
+        <div class="bg-navy-900 text-white py-12 border-b border-navy-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
+                <div class="flex items-center space-x-2 text-xs text-gold-400 font-bold">
+                    <span>Clinical Experience</span>
+                    <span>•</span>
+                    <span>EDM 595 A / B / C</span>
+                </div>
+                <h1 class="text-3xl sm:text-4xl font-extrabold">Library Media Internship Hub</h1>
+                <p class="text-slate-300 text-sm max-w-3xl leading-relaxed">
+                    A total of 100 clinical hours bridging practical learning with AASL National Standards. Experience can be completed across school, public, and university library settings.
+                </p>
+            </div>
         </div>
 
-        <div class="faq-question-item">
-          <div class="faq-q-title">What is the easiest way to determine my pathway?</div>
-          <div class="faq-a-text">If you have an out-of-state certificate, check ALSDE reciprocity[cite: 7]. If you have an MLIS without certification, explore our program[cite: 7]. If you hold an AL certificate + master's, ask about the certification-only option[cite: 7]. Request a transcript review to clarify your best route[cite: 7]!</div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-md p-6 space-y-4 border-t-4 border-t-teal-500">
+                    <div class="flex justify-between items-center">
+                        <span class="bg-teal-50 text-teal-600 text-xs font-bold px-3 py-1 rounded-full">EDM 595 A</span>
+                        <span class="text-xs text-slate-400 font-semibold">Prereq: EDM 581</span>
+                    </div>
+                    <h3 class="font-bold text-navy-900 text-base">Professional Responsibilities</h3>
+                    <p class="text-xs text-rose-600 font-semibold"><i class="fa-solid fa-school mr-1"></i> MUST be completed in a P-12 School Setting</p>
+                    <ul class="text-xs text-slate-600 space-y-2 border-t pt-3">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-teal-500 mr-2"></i> Knowledge of learners and learning</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-teal-500 mr-2"></i> Instructional partnership & advocacy</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-teal-500 mr-2"></i> Collection development & funding</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-teal-500 mr-2"></i> Ethics and professional standards</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-md p-6 space-y-4 border-t-4 border-t-gold-500">
+                    <div class="flex justify-between items-center">
+                        <span class="bg-amber-50 text-gold-600 text-xs font-bold px-3 py-1 rounded-full">EDM 595 B</span>
+                        <span class="text-xs text-slate-400 font-semibold">Prereq: EDM 580</span>
+                    </div>
+                    <h3 class="font-bold text-navy-900 text-base">Access to Information</h3>
+                    <p class="text-xs text-emerald-600 font-semibold"><i class="fa-solid fa-building-columns mr-1"></i> School, Public, or Academic Library</p>
+                    <ul class="text-xs text-slate-600 space-y-2 border-t pt-3">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-gold-500 mr-2"></i> Information technology integration</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-gold-500 mr-2"></i> Ethical information-seeking behavior</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-gold-500 mr-2"></i> Networking with library community</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-gold-500 mr-2"></i> Effective instructional delivery</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-md p-6 space-y-4 border-t-4 border-t-navy-800">
+                    <div class="flex justify-between items-center">
+                        <span class="bg-slate-100 text-navy-900 text-xs font-bold px-3 py-1 rounded-full">EDM 595 C</span>
+                        <span class="text-xs text-slate-400 font-semibold">Prereq: EDM 583</span>
+                    </div>
+                    <h3 class="font-bold text-navy-900 text-base">Impact on Student Achievement</h3>
+                    <p class="text-xs text-emerald-600 font-semibold"><i class="fa-solid fa-building-columns mr-1"></i> School, Public, or Academic Library</p>
+                    <ul class="text-xs text-slate-600 space-y-2 border-t pt-3">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-navy-800 mr-2"></i> Reading promotion & literacy strategies</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-navy-800 mr-2"></i> Strategic planning & assessment</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-navy-800 mr-2"></i> Leadership & professional development</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-navy-800 mr-2"></i> Community advocacy</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
+
+    <!-- FAQ & Pathways Tab -->
+    <section id="tab-faq" class="tab-content hidden">
+        <div class="bg-navy-900 text-white py-12 border-b border-navy-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
+                <div class="flex items-center space-x-2 text-xs text-teal-400 font-bold">
+                    <span>ALSDE Reciprocity & FAQ</span>
+                    <span>•</span>
+                    <span>South Alabama Media Program</span>
+                </div>
+                <h1 class="text-3xl sm:text-4xl font-extrabold">Frequently Asked Questions & Contact Directory</h1>
+                <p class="text-slate-300 text-sm max-w-3xl leading-relaxed">
+                    Answers to certification reciprocity, course transfers, MLIS evaluations, and degree program admissions.
+                </p>
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+            <div class="relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400 text-sm"></i>
+                <input type="text" id="faq-search" onkeyup="filterFAQ()" placeholder="Search FAQ questions (e.g. reciprocity, MLIS, transcript, hours)..." class="w-full bg-white border border-slate-300 rounded-xl pl-11 pr-4 py-3 text-xs focus:ring-2 focus:ring-teal-500 focus:outline-none shadow-sm">
+            </div>
+
+            <div class="space-y-4" id="faq-list">
+                <div class="faq-item bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+                    <button onclick="toggleFAQ(this)" class="w-full text-left p-5 flex items-center justify-between font-bold text-navy-900 text-sm hover:bg-slate-50 transition">
+                        <span>1. I already hold a Library Media certificate from another state. What should I do?</span>
+                        <i class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-answer bg-slate-50 border-t border-slate-100 p-5 text-xs text-slate-600 leading-relaxed space-y-2">
+                        <p>You may be eligible for Alabama certification through certificate reciprocity. ALSDE requires:</p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Valid out-of-state professional educator certificate in Library Media.</li>
+                            <li>At least a master's degree.</li>
+                            <li>Two full years of qualifying full-time professional educational experience in a P-12 school system.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+                    <button onclick="toggleFAQ(this)" class="w-full text-left p-5 flex items-center justify-between font-bold text-navy-900 text-sm hover:bg-slate-50 transition">
+                        <span>2. I have an MLIS or another master's degree, but NO educator certificate. Can I become a school librarian in Alabama?</span>
+                        <i class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-answer bg-slate-50 border-t border-slate-100 p-5 text-xs text-slate-600 leading-relaxed space-y-2">
+                        <p>Possibly. Certificate reciprocity generally does NOT apply without an educator certificate. You would complete an Alabama-approved Library Media certification program. Up to 9 credit hours of prior graduate work may transfer.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faculty Contact Card Section -->
+            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-md flex flex-col md:flex-row items-center gap-8 mt-12">
+                <div class="w-28 h-28 rounded-full bg-slate-200 border-4 border-gold-500 overflow-hidden shrink-0 shadow-inner flex items-center justify-center text-3xl font-extrabold text-navy-900">
+                    JC
+                </div>
+                <div class="space-y-3 text-center md:text-left flex-grow">
+                    <div>
+                        <span class="text-xs font-bold text-teal-600 uppercase tracking-wider">Program Faculty Director</span>
+                        <h3 class="text-xl font-bold text-navy-900">Dr. Johnny Cho</h3>
+                        <p class="text-xs text-slate-500 font-medium">Assistant Professor, Educational Media • University of South Alabama</p>
+                    </div>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-4 text-xs font-semibold text-slate-700 pt-1">
+                        <a href="mailto:ycho@southalabama.edu" class="hover:text-teal-600 flex items-center"><i class="fa-solid fa-envelope mr-1.5 text-teal-500"></i> ycho@southalabama.edu</a>
+                        <span class="flex items-center"><i class="fa-solid fa-phone mr-1.5 text-gold-500"></i> (251) 380-2619</span>
+                        <a href="https://discord.gg/ZZGnaVb3zE" target="_blank" class="hover:text-indigo-600 flex items-center"><i class="fa-brands fa-discord mr-1.5 text-indigo-500"></i> Join Discord Server</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-navy-950 text-slate-400 border-t border-navy-800 text-xs py-12 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="space-y-3">
+                <div class="flex items-center space-x-2 text-white font-extrabold text-base">
+                    <span class="text-teal-400">LMC</span>
+                    <span>Community</span>
+                </div>
+                <p class="text-slate-400 text-xs leading-relaxed">Connecting school librarians, educators, and researchers across South Alabama & the Gulf Coast.</p>
+            </div>
+            <div class="space-y-2">
+                <span class="text-white font-bold block text-sm">Quick Links</span>
+                <ul class="space-y-1.5">
+                    <li><button onclick="switchTab('home')" class="hover:text-teal-400 transition">Community Home</button></li>
+                    <li><button onclick="switchTab('med-program')" class="hover:text-teal-400 transition">M.Ed. & Network Hub</button></li>
+                    <li><button onclick="switchTab('internship')" class="hover:text-teal-400 transition">EDM 595 Internship</button></li>
+                    <li><button onclick="switchTab('faq')" class="hover:text-teal-400 transition">Reciprocity FAQ</button></li>
+                </ul>
+            </div>
+            <div class="space-y-2">
+                <span class="text-white font-bold block text-sm">Community Resources</span>
+                <ul class="space-y-1.5">
+                    <li><a href="https://discord.gg/ZZGnaVb3zE" target="_blank" class="hover:text-indigo-400 transition">LMC Discord Channel</a></li>
+                    <li><a href="https://tinyurl.com/librarymediacommunity" target="_blank" class="hover:text-teal-400 transition">Join Network Form</a></li>
+                </ul>
+            </div>
+            <div class="space-y-2">
+                <span class="text-white font-bold block text-sm">University Contact</span>
+                <p class="text-slate-400">College of Education & Professional Studies</p>
+                <p class="text-slate-400">University of South Alabama, Mobile, AL</p>
+            </div>
+        </div>
+        <div class="pt-6 border-t border-navy-900 text-center text-[11px] text-slate-500">
+            <p>&copy; 2026 Library Media Community (LMC). Spearheaded by Dr. Johnny Cho, University of South Alabama.</p>
+        </div>
     </div>
+</footer>
 
-    <!-- Faculty Contact Section -->
-    <div id="faculty" class="faculty-card">
-      <div class="faculty-details">
-        <span class="role">Program Faculty & Leadership</span>
-        <h3>Dr. Johnny Cho</h3>
-        <p>Assistant Professor of Library Media, Department of Counseling and Instructional Sciences</p>
-        <p style="margin-top: 0.75rem;"><strong>Email:</strong> ycho@southalabama.edu | <strong>Phone:</strong> (251) 380-2619[cite: 38]</p>
-        <div style="margin-top: 1.5rem;">
-          <a href="https://tinyurl.com/librarymediacommunity" target="_blank" class="btn-primary" style="display: inline-block;">Connect on Community Linktree</a>
-        </div>
-      </div>
-    </div>
+<script>
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+        const target = document.getElementById(`tab-${tabId}`);
+        if (target) target.classList.remove('hidden');
 
-  </div>
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        const activeBtn = document.getElementById(`nav-${tabId}`);
+        if (activeBtn) activeBtn.classList.add('active');
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2026 <strong>Library Media Specialist Community</strong>. University of South Alabama — College of Education and Professional Studies[cite: 37].</p>
-  </footer>
+        document.getElementById('mobile-menu').classList.add('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-</body>
-</html>
+    function toggleMobileMenu() {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+    }
+
+    function scrollToPathwayFinder() {
+        switchTab('home');
+        setTimeout(() => {
+            const el = document.getElementById('pathway-finder-section');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+    }
+
+    const pathwayData = {
+        'A': { title: "Pathway A: Out-of-State Library Media Reciprocity", desc: "Requires a valid out-of-state Library Media certificate, master's degree, and 2 full years of P-12 experience. Determined by ALSDE." },
+        'B': { title: "Pathway B: MLIS / Non-Certified Graduate Option", desc: "Enroll in USA's Library Media M.Ed. Up to 9 credit hours of past graduate coursework can satisfy elective credits!" },
+        'C': { title: "Pathway C: Certification-Only for Certified Educators", desc: "If you hold an Alabama educator certificate + Master's degree, you qualify for a certification-only pathway focusing on media core courses & internships." },
+        'D': { title: "Pathway D: Out-of-State Non-Media Certified Pathway", desc: "Complete the USA Library Media certification program to obtain Alabama endorsement." }
+    };
+
+    function selectPathway(code) {
+        document.querySelectorAll('.path-option').forEach(btn => btn.classList.remove('border-teal-500', 'bg-navy-900'));
+        const btn = document.getElementById(`btn-path-${code}`);
+        if (btn) btn.classList.add('border-teal-500', 'bg-navy-900');
+        const data = pathwayData[code];
+        if (data) {
+            document.getElementById('path-title').innerText = data.title;
+            document.getElementById('path-desc').innerText = data.desc;
+            document.getElementById('path-action').classList.remove('hidden');
+        }
+    }
+
+    function toggleFAQ(button) {
+        button.nextElementSibling.classList.toggle('open');
+        const icon = button.querySelector('i');
+        if (icon) icon.classList.toggle('rotate-180');
+    }
+
+    function filterFAQ() {
+        const query = document.getElementById('faq-search').value.toLowerCase();
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.style.display = item.innerText.toLowerCase().includes(query) ? 'block' : 'none';
+        });
+    }
+</script>
