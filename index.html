@@ -91,6 +91,7 @@
                 <!-- Desktop Navigation Links -->
                 <nav class="hidden md:flex items-center space-x-2 lg:space-x-4">
                     <a href="#home" onclick="setActiveNav(this)" class="nav-link active px-3 py-2 text-sm font-semibold transition-all hover:text-teal-400">Home</a>
+                    <a href="#announcements" onclick="setActiveNav(this)" class="nav-link px-3 py-2 text-sm font-semibold transition-all hover:text-teal-400">Info Session</a>
                     <a href="#med-program" onclick="setActiveNav(this)" class="nav-link px-3 py-2 text-sm font-semibold transition-all hover:text-teal-400">M.Ed.</a>
                     <a href="#internship" onclick="setActiveNav(this)" class="nav-link px-3 py-2 text-sm font-semibold transition-all hover:text-teal-400">Internship</a>
                     <a href="#faq" onclick="setActiveNav(this)" class="nav-link px-3 py-2 text-sm font-semibold transition-all hover:text-teal-400">FAQ</a>
@@ -119,6 +120,7 @@
         <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden bg-navy-950 border-t border-navy-800 px-4 pt-2 pb-4 space-y-2">
             <a href="#home" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-navy-800">Home</a>
+            <a href="#announcements" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-navy-800">Info Session</a>
             <a href="#med-program" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-navy-800">M.Ed.</a>
             <a href="#internship" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-navy-800">Internship</a>
             <a href="#faq" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-navy-800">FAQ</a>
@@ -180,129 +182,152 @@
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Orientation Slide Section -->
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <div class="text-center max-w-2xl mx-auto space-y-2 mb-8">
-                    <span class="bg-teal-50 text-teal-600 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Program Overview</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900">Program Orientation Slide</h2>
-                    <p class="text-slate-600 text-xs">Review the core orientation slides for the Library Media program below.</p>
-                </div>
-                <div class="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden p-4 flex justify-center">
-                    <div class="w-full max-w-[960px] h-[569px]">
-                        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSAHAzdIXWF-zrFUNF_CUVWxL-anTvr_86xvnXrI5sFNr7tIjLZeTC-7eKEIVNla8CLj4p1wvND2-qD/pubembed?start=false&loop=false&delayms=3000" frameborder="0" width="100%" height="100%" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" class="rounded-2xl"></iframe>
+        <!-- ANNOUNCEMENTS / INFORMATION SESSION SECTION -->
+        <section id="announcements" class="scroll-mt-20 py-12 bg-gradient-to-r from-teal-500/10 via-amber-500/10 to-teal-500/10 border-b border-slate-200">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white rounded-3xl border-2 border-teal-500/40 shadow-xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="space-y-2 text-center md:text-left">
+                        <div class="inline-flex items-center space-x-2 bg-teal-50 text-teal-700 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                            <i class="fa-solid fa-bullhorn mr-1 text-teal-500 animate-bounce"></i>
+                            <span>Course Introductory Orientation</span>
+                        </div>
+                        <h2 class="text-2xl font-extrabold text-navy-900">Upcoming Information Session</h2>
+                        <p class="text-slate-600 text-xs sm:text-sm max-w-xl leading-relaxed">
+                            Join our live introductory orientation session to learn about course expectations, program pathways, and connect with faculty and future peers.
+                        </p>
                     </div>
-                </div>
-            </div>
-
-            <!-- Interactive HTML Program Pathways Section -->
-            <div class="bg-slate-100 py-16 border-t border-slate-200">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-                    <div class="text-center max-w-2xl mx-auto space-y-2">
-                        <span class="bg-gold-500/20 text-gold-600 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Curriculum Roadmap</span>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900">Interactive Program & Certification Pathways</h2>
-                        <p class="text-slate-600 text-xs">Hover over the Certification Pathway coursework box below to view transcript waiver policies.</p>
-                    </div>
-
-                    <!-- Interactive Flowchart Container -->
-                    <div class="bg-white p-6 sm:p-10 rounded-3xl border border-slate-200 shadow-xl space-y-8 overflow-x-auto">
-                        
-                        <!-- Row 1: M.Ed in Library Media -->
-                        <div class="flex flex-col md:flex-row items-center justify-between gap-4 min-w-[800px] pb-6 border-b border-slate-100">
-                            <!-- Program Box -->
-                            <div class="w-48 bg-slate-50 border-2 border-navy-900 rounded-2xl p-4 text-center shadow-sm">
-                                <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block mb-1">Program</span>
-                                <h4 class="font-bold text-navy-900 text-sm">M.Ed. in Library Media</h4>
-                            </div>
-                            <i class="fa-solid fa-arrow-right text-slate-400 hidden md:block"></i>
-
-                            <!-- Coursework Box -->
-                            <div class="flex-1 bg-slate-50 border-2 border-slate-300 rounded-2xl p-4 space-y-3 shadow-sm mx-2">
-                                <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block">Coursework + Internship</span>
-                                <div class="bg-white border border-slate-200 rounded-xl p-3 text-center text-xs font-semibold text-navy-900">
-                                    Required Courses: 21 credits<br>
-                                    <span class="text-slate-600 font-normal">Diversity: 6 credits &nbsp;|&nbsp; Research: 3 credits</span>
-                                </div>
-                                <div class="bg-teal-50 border border-teal-200 rounded-xl p-2.5 text-center text-xs font-semibold text-teal-800">
-                                    Concurrent Internship (Supervised Practice & Problem-Solving)
-                                </div>
-                            </div>
-                            <i class="fa-solid fa-arrow-right text-slate-400 hidden md:block"></i>
-
-                            <!-- Completion Assessments -->
-                            <div class="w-56 space-y-2">
-                                <div class="bg-teal-50/60 border border-teal-200 rounded-xl p-3 text-center text-xs font-medium text-navy-900">
-                                    Comprehensive Exam<br><span class="text-[10px] text-slate-500">(Internship-Based Capstone Paper)</span>
-                                </div>
-                                <div class="bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-center text-xs font-medium text-slate-700">
-                                    Praxis Examination
-                                </div>
-                            </div>
-                            <i class="fa-solid fa-arrow-right text-slate-400 hidden md:block"></i>
-
-                            <!-- Award Box -->
-                            <div class="w-44 bg-slate-50 border-2 border-navy-900 rounded-2xl p-4 text-center shadow-sm">
-                                <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block mb-1">Award</span>
-                                <h4 class="font-bold text-navy-900 text-sm">M.Ed. Degree</h4>
-                            </div>
-                        </div>
-
-                        <!-- Row 2: Library Media Certification Pathway (WITH HOVER TOOLTIP) -->
-                        <div class="flex flex-col md:flex-row items-center justify-between gap-4 min-w-[800px] relative pt-2">
-                            <!-- Program Box -->
-                            <div class="w-48 bg-slate-50 border-2 border-navy-900 rounded-2xl p-4 text-center shadow-sm">
-                                <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block mb-1">Program</span>
-                                <h4 class="font-bold text-navy-900 text-sm">Library Media Certification Pathway</h4>
-                            </div>
-                            <i class="fa-solid fa-arrow-right text-slate-400 hidden md:block"></i>
-
-                            <!-- Coursework Box with HOVER EFFECT -->
-                            <div class="flex-1 relative group bg-amber-50/60 border-2 border-amber-300 rounded-2xl p-4 space-y-3 shadow-md mx-2 cursor-pointer transition">
-                                <span class="text-[10px] font-extrabold text-amber-700 uppercase tracking-wider block">Coursework + Internship (Hover Me)</span>
-                                <div class="bg-white border border-amber-200 rounded-xl p-3 text-center text-xs font-semibold text-navy-900">
-                                    Required Courses: 21 credits<br>
-                                    <span class="text-slate-600 font-normal">Diversity: 6 credits* &nbsp;|&nbsp; Research: 3 credits*</span>
-                                </div>
-                                <div class="bg-teal-50 border border-teal-200 rounded-xl p-2.5 text-center text-xs font-semibold text-teal-800">
-                                    Concurrent Internship (Supervised Practice & Problem-Solving)
-                                </div>
-
-                                <!-- Tooltip Popup on Hover -->
-                                <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-3 hidden group-hover:block w-80 bg-navy-900 text-white text-[11px] rounded-xl p-3 shadow-2xl z-20 border border-gold-500 text-center leading-relaxed">
-                                    <i class="fa-solid fa-circle-info text-gold-400 mr-1"></i>
-                                    *diversity and research coursework may be waived following a review of prior graduate transcripts. Required coursework cannot be waived.
-                                    <div class="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-navy-900"></div>
-                                </div>
-                            </div>
-                            <i class="fa-solid fa-arrow-right text-slate-400 hidden md:block"></i>
-
-                            <!-- Completion Assessments -->
-                            <div class="w-56 space-y-2">
-                                <div class="bg-teal-50/60 border border-teal-200 rounded-xl p-3 text-center text-xs font-medium text-navy-900">
-                                    Comprehensive Exam<br><span class="text-[10px] text-slate-500">(Internship-Based Capstone Paper)</span>
-                                </div>
-                                <div class="bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-center text-xs font-medium text-slate-700">
-                                    Praxis Examination
-                                </div>
-                            </div>
-                            <i class="fa-solid fa-arrow-right text-slate-400 hidden md:block"></i>
-
-                            <!-- Award Box -->
-                            <div class="w-44 bg-slate-50 border-2 border-navy-900 rounded-2xl p-4 text-center shadow-sm">
-                                <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block mb-1">Award</span>
-                                <h4 class="font-bold text-navy-900 text-sm">Library Media Certification</h4>
-                            </div>
-                        </div>
-
-                        <!-- Footer Note -->
-                        <div class="pt-4 text-center text-xs text-slate-500 border-t border-slate-100">
-                            *diversity and research coursework may be waived following a review of prior graduate transcripts. Required coursework cannot be waived.
-                        </div>
-
+                    <div class="shrink-0 flex flex-col sm:flex-row gap-3">
+                        <a href="https://discord.gg/ZZGnaVb3zE" target="_blank" class="bg-navy-900 hover:bg-navy-800 text-white font-bold px-5 py-3 rounded-xl text-xs transition shadow-md flex items-center justify-center">
+                            <i class="fa-brands fa-discord mr-2 text-sm text-teal-400"></i> Join Info Session
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Orientation Slide Section -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="text-center max-w-2xl mx-auto space-y-2 mb-8">
+                <span class="bg-teal-50 text-teal-600 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Program Overview</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900">Program Orientation Slide</h2>
+                <p class="text-slate-600 text-xs">Review the core orientation slides for the Library Media program below.</p>
+            </div>
+            <div class="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden p-4 flex justify-center">
+                <div class="w-full max-w-[960px] h-[569px]">
+                    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSAHAzdIXWF-zrFUNF_CUVWxL-anTvr_86xvnXrI5sFNr7tIjLZeTC-7eKEIVNla8CLj4p1wvND2-qD/pubembed?start=false&loop=false&delayms=3000" frameborder="0" width="100%" height="100%" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" class="rounded-2xl"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive HTML Program Pathways Section -->
+        <div class="bg-slate-100 py-16 border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <div class="text-center max-w-2xl mx-auto space-y-2">
+                    <span class="bg-gold-500/20 text-gold-600 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Curriculum Roadmap</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900">Interactive Program & Certification Pathways</h2>
+                    <p class="text-slate-600 text-xs">Hover over the Certification Pathway coursework box below to view transcript waiver policies.</p>
+                </div>
+
+                <!-- Interactive Flowchart Container -->
+                <div class="bg-white p-6 sm:p-10 rounded-3xl border border-slate-200 shadow-xl space-y-8 overflow-x-auto">
+                    
+                    <!-- Row 1: M.Ed in Library Media -->
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-4 min-w-[800px] pb-6 border-b border-slate-100">
+                        <!-- Program Box -->
+                        <div class="w-48 bg-slate-50 border-2 border-navy-900 rounded-2xl p-4 text-center shadow-sm">
+                            <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block mb-1">Program</span>
+                            <h4 class="font-bold text-navy-900 text-sm">M.Ed. in Library Media</h4>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-slate-400 hidden md:block"></i>
+
+                        <!-- Coursework Box -->
+                        <div class="flex-1 bg-slate-50 border-2 border-slate-300 rounded-2xl p-4 space-y-3 shadow-sm mx-2">
+                            <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block">Coursework + Internship</span>
+                            <div class="bg-white border border-slate-200 rounded-xl p-3 text-center text-xs font-semibold text-navy-900">
+                                Required Courses: 21 credits<br>
+                                <span class="text-slate-600 font-normal">Diversity: 6 credits &nbsp;|&nbsp; Research: 3 credits</span>
+                            </div>
+                            <div class="bg-teal-50 border border-teal-200 rounded-xl p-2.5 text-center text-xs font-semibold text-teal-800">
+                                Concurrent Internship (Supervised Practice & Problem-Solving)
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-slate-400 hidden md:block"></i>
+
+                        <!-- Completion Assessments -->
+                        <div class="w-56 space-y-2">
+                            <div class="bg-teal-50/60 border border-teal-200 rounded-xl p-3 text-center text-xs font-medium text-navy-900">
+                                Comprehensive Exam<br><span class="text-[10px] text-slate-500">(Internship-Based Capstone Paper)</span>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-center text-xs font-medium text-slate-700">
+                                Praxis Examination
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-slate-400 hidden md:block"></i>
+
+                        <!-- Award Box -->
+                        <div class="w-44 bg-slate-50 border-2 border-navy-900 rounded-2xl p-4 text-center shadow-sm">
+                            <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block mb-1">Award</span>
+                            <h4 class="font-bold text-navy-900 text-sm">M.Ed. Degree</h4>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Library Media Certification Pathway (WITH HOVER TOOLTIP) -->
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-4 min-w-[800px] relative pt-2">
+                        <!-- Program Box -->
+                        <div class="w-48 bg-slate-50 border-2 border-navy-900 rounded-2xl p-4 text-center shadow-sm">
+                            <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block mb-1">Program</span>
+                            <h4 class="font-bold text-navy-900 text-sm">Library Media Certification Pathway</h4>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-slate-400 hidden md:block"></i>
+
+                        <!-- Coursework Box with HOVER EFFECT -->
+                        <div class="flex-1 relative group bg-amber-50/60 border-2 border-amber-300 rounded-2xl p-4 space-y-3 shadow-md mx-2 cursor-pointer transition">
+                            <span class="text-[10px] font-extrabold text-amber-700 uppercase tracking-wider block">Coursework + Internship (Hover Me)</span>
+                            <div class="bg-white border border-amber-200 rounded-xl p-3 text-center text-xs font-semibold text-navy-900">
+                                Required Courses: 21 credits<br>
+                                <span class="text-slate-600 font-normal">Diversity: 6 credits* &nbsp;|&nbsp; Research: 3 credits*</span>
+                            </div>
+                            <div class="bg-teal-50 border border-teal-200 rounded-xl p-2.5 text-center text-xs font-semibold text-teal-800">
+                                Concurrent Internship (Supervised Practice & Problem-Solving)
+                            </div>
+
+                            <!-- Tooltip Popup on Hover -->
+                            <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-3 hidden group-hover:block w-80 bg-navy-900 text-white text-[11px] rounded-xl p-3 shadow-2xl z-20 border border-gold-500 text-center leading-relaxed">
+                                <i class="fa-solid fa-circle-info text-gold-400 mr-1"></i>
+                                *diversity and research coursework may be waived following a review of prior graduate transcripts. Required coursework cannot be waived.
+                                <div class="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-navy-900"></div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-slate-400 hidden md:block"></i>
+
+                        <!-- Completion Assessments -->
+                        <div class="w-56 space-y-2">
+                            <div class="bg-teal-50/60 border border-teal-200 rounded-xl p-3 text-center text-xs font-medium text-navy-900">
+                                Comprehensive Exam<br><span class="text-[10px] text-slate-500">(Internship-Based Capstone Paper)</span>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-center text-xs font-medium text-slate-700">
+                                Praxis Examination
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-slate-400 hidden md:block"></i>
+
+                        <!-- Award Box -->
+                        <div class="w-44 bg-slate-50 border-2 border-navy-900 rounded-2xl p-4 text-center shadow-sm">
+                            <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block mb-1">Award</span>
+                            <h4 class="font-bold text-navy-900 text-sm">Library Media Certification</h4>
+                        </div>
+                    </div>
+
+                    <!-- Footer Note -->
+                    <div class="pt-4 text-center text-xs text-slate-500 border-t border-slate-100">
+                        *diversity and research coursework may be waived following a review of prior graduate transcripts. Required coursework cannot be waived.
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
         <!-- M.ED. SECTION -->
         <section id="med-program" class="scroll-mt-20 py-16 bg-white border-t border-slate-200">
@@ -821,6 +846,7 @@
                     <span class="text-white font-bold block text-sm">Quick Links</span>
                     <ul class="space-y-1.5">
                         <li><a href="#home" class="hover:text-teal-400 transition">Home</a></li>
+                        <li><a href="#announcements" class="hover:text-teal-400 transition">Info Session</a></li>
                         <li><a href="#med-program" class="hover:text-teal-400 transition">M.Ed.</a></li>
                         <li><a href="#internship" class="hover:text-teal-400 transition">Internship</a></li>
                         <li><a href="#faq" class="hover:text-teal-400 transition">FAQ</a></li>
