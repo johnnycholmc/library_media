@@ -93,6 +93,7 @@
                     <a href="#home" onclick="setActiveNav(this)" class="nav-link active px-3 py-2 text-sm font-semibold transition-all hover:text-teal-400">Home</a>
                     <a href="#med-program" onclick="setActiveNav(this)" class="nav-link px-3 py-2 text-sm font-semibold transition-all hover:text-teal-400">M.Ed.</a>
                     <a href="#internship" onclick="setActiveNav(this)" class="nav-link px-3 py-2 text-sm font-semibold transition-all hover:text-teal-400">Internship</a>
+                    <a href="#survey" onclick="setActiveNav(this)" class="nav-link px-3 py-2 text-sm font-semibold transition-all hover:text-teal-400">Survey</a>
                     <a href="#faq" onclick="setActiveNav(this)" class="nav-link px-3 py-2 text-sm font-semibold transition-all hover:text-teal-400">FAQ</a>
                 </nav>
 
@@ -120,6 +121,7 @@
             <a href="#home" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-navy-800">Home</a>
             <a href="#med-program" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-navy-800">M.Ed.</a>
             <a href="#internship" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-navy-800">Internship</a>
+            <a href="#survey" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-navy-800">Survey</a>
             <a href="#faq" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-navy-800">FAQ</a>
         </div>
     </header>
@@ -516,8 +518,27 @@
             </div>
         </section>
 
+        <!-- PROSPECTIVE STUDENT SURVEY SECTION -->
+        <section id="survey" class="scroll-mt-20 py-16 bg-white border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 space-y-3 text-center">
+                <span class="bg-teal-50 text-teal-600 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Future Students</span>
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-navy-900">Prospective Student Interest Survey</h1>
+                <p class="text-slate-600 text-sm max-w-2xl mx-auto leading-relaxed">
+                    Interested in joining the Library Media program at South Alabama? Please take a moment to fill out our prospective student survey below.
+                </p>
+            </div>
+
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-slate-50 rounded-3xl border border-slate-200 shadow-xl overflow-hidden p-4">
+                    <div class="w-full h-[750px]">
+                        <iframe src="https://forms.gle/UF9W5tXRPuTX2qcr6" class="w-full h-full border-0 rounded-2xl" title="Prospective Student Interest Survey"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- FAQ SECTION (12 QUESTIONS) -->
-        <section id="faq" class="scroll-mt-20 py-16 bg-white border-t border-slate-200">
+        <section id="faq" class="scroll-mt-20 py-16 bg-slate-50 border-t border-slate-200">
             <!-- FAQ Header -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 space-y-3">
                 <div class="flex items-center space-x-2 text-xs text-teal-600 font-bold">
@@ -537,7 +558,7 @@
                 <!-- Search Filter Box -->
                 <div class="relative">
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400 text-sm"></i>
-                    <input type="text" id="faq-search" onkeyup="filterFAQ()" placeholder="Search FAQ questions (e.g. reciprocity, MLIS, transcript, hours)..." class="w-full bg-slate-50 border border-slate-300 rounded-xl pl-11 pr-4 py-3 text-xs focus:ring-2 focus:ring-teal-500 focus:outline-none shadow-sm">
+                    <input type="text" id="faq-search" onkeyup="filterFAQ()" placeholder="Search FAQ questions (e.g. reciprocity, MLIS, transcript, hours)..." class="w-full bg-white border border-slate-300 rounded-xl pl-11 pr-4 py-3 text-xs focus:ring-2 focus:ring-teal-500 focus:outline-none shadow-sm">
                 </div>
 
                 <!-- FAQ Accordion List (12 Questions) -->
@@ -804,6 +825,7 @@
                         <li><a href="#home" class="hover:text-teal-400 transition">Home</a></li>
                         <li><a href="#med-program" class="hover:text-teal-400 transition">M.Ed.</a></li>
                         <li><a href="#internship" class="hover:text-teal-400 transition">Internship</a></li>
+                        <li><a href="#survey" class="hover:text-teal-400 transition">Survey</a></li>
                         <li><a href="#faq" class="hover:text-teal-400 transition">FAQ</a></li>
                     </ul>
                 </div>
